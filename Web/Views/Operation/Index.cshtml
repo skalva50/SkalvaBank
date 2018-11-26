@@ -1,0 +1,61 @@
+
+@{
+    ViewData["Title"] = "Operation";
+    @model OperationViewModel
+}
+<h1>Liste des opérations</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ListeOperations.FirstOrDefault().Dateoperation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ListeOperations.FirstOrDefault().Libelle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ListeOperations.FirstOrDefault().Reference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ListeOperations.FirstOrDefault().Montant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ListeOperations.FirstOrDefault().Sens)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ListeOperations.FirstOrDefault().Numcompte)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ListeOperations.FirstOrDefault().IdCategorieNavigation.Libelle)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ListeOperations) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dateoperation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Libelle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reference)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Montant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sens)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numcompte)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCategorieNavigation.Libelle)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

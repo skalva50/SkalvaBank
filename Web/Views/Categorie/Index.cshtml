@@ -1,0 +1,31 @@
+
+@{
+    ViewData["Title"] = "Categories";
+    @model CategorieViewModel
+}
+<h1>Liste des opérations</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ListCategories.FirstOrDefault().Libelle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ListCategories.FirstOrDefault().IdTypecategorieNavigation)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ListCategories) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Libelle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTypecategorieNavigation.Libelle)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
