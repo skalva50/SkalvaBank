@@ -9,27 +9,26 @@ using SkalvaBank.Domain;
 
 namespace SkalvaBank.Services
 {
-    public class OperationService : IOperationService
-    {        
-        private readonly IAsyncRepository<Operation> _itemRepository;
-
-        public OperationService(IAsyncRepository<Operation> itemRepository)
+    public class OperationService : BaseService<Operation>, IOperationService
+    {
+        public OperationService(IRepository<Operation> repository, IAsyncRepository<Operation> repositoryAsync) : base(repository, repositoryAsync)
         {
-            _itemRepository = itemRepository;
         }
-        public async Task<OperationViewModel> ListeOperations()
+
+        public async Task<Operation> GetByIdWithGraphAsync(int id)
+        {
+            BaseSpecification<Operation> spec = new BaseSpecification<Operation>(O => O.Id == id);            
+            spec.AddInclude(o => o.IdCategorieNavigation);
+            return await _repositoryAsync.GetSingleBySpecAsync(spec);
+        }
+
+        public async Task<IReadOnlyList<Operation>> ListAllWithGraphAsync()
         {
             BaseSpecification<Operation> spec = new BaseSpecification<Operation>(O => O.Dateoperation.Value.Month == 9);
             spec.AddInclude(o => o.IdCategorieNavigation);
             spec.ApplyOrderBy(O => O.Dateoperation);
             spec.ApplyPaging(0,20);
-
-            IEnumerable<Operation> items = await _itemRepository.ListAsync(spec);
-            var vm = new OperationViewModel();
-            vm.ListeOperations = items;
-            return vm;            
+            return await this.ListAsync(spec);            
         }
     }
-
-
 }

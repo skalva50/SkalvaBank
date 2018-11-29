@@ -34,10 +34,14 @@ namespace SkalvaBank.Dal
             return List(spec).FirstOrDefault();
         }
 
-
         public virtual async Task<T> GetByIdAsync(int id)
         {
             return await _dbContext.Set<T>().FindAsync(id);
+        }
+
+        public virtual async Task<T> GetSingleBySpecAsync(ISpecification<T> spec)
+        {            
+            return await ApplySpecification(spec).FirstOrDefaultAsync();
         }
 
         public IEnumerable<T> ListAll()
@@ -104,5 +108,6 @@ namespace SkalvaBank.Dal
             _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync();
         }
+
     }
 }

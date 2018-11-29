@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace SkalvaBank.Domain
 {
@@ -11,10 +12,14 @@ namespace SkalvaBank.Domain
             Operation = new HashSet<Operation>();
         }
 
+        [Display(Name = "Categorie Opération")]
         public string Libelle { get; set; }
+
+        [Display(Name = "Hors Statistiques")]        
         public bool? HorsStats { get; set; }
         public int? IdTypecategorie { get; set; }
 
+        [Display(Name = "Type Catégorie")]
         public Typecategorie IdTypecategorieNavigation { get; set; }
         public ICollection<AssLibCategorie> AssLibCategorie { get; set; }
         public ICollection<Operation> Operation { get; set; }

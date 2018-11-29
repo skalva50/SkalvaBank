@@ -1,0 +1,60 @@
+@model SkalvaBank.Domain.Operation
+
+@{
+    ViewData["Title"] = "Details Operation";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Operation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Dateoperation)
+        </dt>        
+        <dd>
+            @Html.DisplayFor(model => model.Dateoperation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Libelle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Libelle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Reference)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Reference)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Montant)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Montant)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SensString)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SensString)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Numcompte)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Numcompte)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdCategorieNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdCategorieNavigation.Libelle)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

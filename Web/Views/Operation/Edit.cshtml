@@ -1,0 +1,64 @@
+@model SkalvaBank.Domain.Operation
+
+@{
+    ViewData["Title"] = "Modifier Operation";
+}
+
+<h2>Edit</h2>
+
+<h4>Operation</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Dateoperation" class="control-label"></label>
+                <input asp-for="Dateoperation" class="form-control" />
+                <span asp-validation-for="Dateoperation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Libelle" class="control-label"></label>
+                <input asp-for="Libelle" class="form-control" />
+                <span asp-validation-for="Libelle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reference" class="control-label"></label>
+                <input asp-for="Reference" class="form-control" />
+                <span asp-validation-for="Reference" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Montant" class="control-label"></label>
+                <input asp-for="Montant" class="form-control" />
+                <span asp-validation-for="Montant" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sens" class="control-label"></label>
+                <input asp-for="Sens" class="form-control" />
+                <span asp-validation-for="Sens" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdCategorieNavigation" class="control-label"></label>
+                <select asp-for="IdCategorie" class="form-control" asp-items="ViewBag.IdCategorie"></select>
+                <span asp-validation-for="IdCategorie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Numcompte" class="control-label"></label>
+                <input asp-for="Numcompte" class="form-control" />
+                <span asp-validation-for="Numcompte" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

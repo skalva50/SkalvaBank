@@ -2,11 +2,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using SkalvaBank.Domain;
 using System.Collections.Generic;
 
-namespace SkalvaBank.Services
+namespace SkalvaBank.Web
 {
     public class OperationViewModel
     {
-        public IEnumerable<Operation> ListeOperations { get; set; }
+        public IEnumerable<Operation> ListOperations { get; set; }
 
     }
 }

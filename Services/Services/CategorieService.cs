@@ -9,25 +9,19 @@ using SkalvaBank.Domain;
 
 namespace SkalvaBank.Services
 {
-    public class CategorieService : ICategorieService
-    {        
-        private readonly IAsyncRepository<Categorie> _itemRepository;
-
-        public CategorieService(IAsyncRepository<Categorie> itemRepository)
+    public class CategorieService : BaseService<Categorie>, ICategorieService
+    {
+        public CategorieService(IRepository<Categorie> repository, IAsyncRepository<Categorie> repositoryAsync) : base(repository, repositoryAsync)
         {
-            _itemRepository = itemRepository;
         }
-
-        public async Task<CategorieViewModel> ListeCategories()
+        
+        public async Task<IReadOnlyList<Categorie>> ListAllWithGraphAsync()
         {
             BaseSpecification<Categorie> spec = new BaseSpecification<Categorie>();
             spec.AddInclude(C => C.IdTypecategorieNavigation);
             spec.ApplyOrderBy(C => C.Libelle);
 
-            IEnumerable<Categorie> liste = await _itemRepository.ListAsync(spec);
-            var vm = new CategorieViewModel();
-            vm.ListCategories = liste;
-            return vm;   
+            return await _repositoryAsync.ListAsync(spec);            
         }
     }
 

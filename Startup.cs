@@ -63,12 +63,7 @@ namespace SkalvaBank
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Operation}/{action=Index}/{id?}");
-            });
+            app.UseMvc();
         }
     }
 }

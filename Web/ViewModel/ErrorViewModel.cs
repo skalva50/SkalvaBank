@@ -1,6 +1,6 @@
 using System;
 
-namespace SkalvaBank.Services
+namespace SkalvaBank.Web
 {
     public class ErrorViewModel
     {

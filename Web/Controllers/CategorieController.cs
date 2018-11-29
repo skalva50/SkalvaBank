@@ -17,9 +17,10 @@ namespace SkalvaBank.Web
         [HttpGet]
         [HttpPost]
         public async Task<IActionResult> Index()
-        {            
-            var categorieModel = await _categorieService.ListeCategories();
-            return View(categorieModel);
+        {  
+            CategorieViewModel categorieVM = new CategorieViewModel();          
+            categorieVM.ListCategories = await _categorieService.ListAllWithGraphAsync();
+            return View(categorieVM);
         }
     }
 }

@@ -9,30 +9,31 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ListeOperations.FirstOrDefault().Dateoperation)
+                @Html.DisplayNameFor(model => model.ListOperations.FirstOrDefault().Dateoperation)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ListeOperations.FirstOrDefault().Libelle)
+                @Html.DisplayNameFor(model => model.ListOperations.FirstOrDefault().Libelle)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ListeOperations.FirstOrDefault().Reference)
+                @Html.DisplayNameFor(model => model.ListOperations.FirstOrDefault().Reference)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ListeOperations.FirstOrDefault().Montant)
+                @Html.DisplayNameFor(model => model.ListOperations.FirstOrDefault().Montant)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ListeOperations.FirstOrDefault().Sens)
+                @Html.DisplayNameFor(model => model.ListOperations.FirstOrDefault().Sens)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ListeOperations.FirstOrDefault().Numcompte)
+                @Html.DisplayNameFor(model => model.ListOperations.FirstOrDefault().Numcompte)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ListeOperations.FirstOrDefault().IdCategorieNavigation.Libelle)
+                @Html.DisplayNameFor(model => model.ListOperations.FirstOrDefault().IdCategorieNavigation.Libelle)
             </th>
+            <td></td>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.ListeOperations) {
+@foreach (var item in Model.ListOperations) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Dateoperation)
@@ -47,13 +48,17 @@
                 @Html.DisplayFor(modelItem => item.Montant)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Sens)
+                @Html.DisplayFor(modelItem => item.SensString)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Numcompte)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IdCategorieNavigation.Libelle)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
             </td>
         </tr>
 }
