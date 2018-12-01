@@ -5,6 +5,24 @@
 }
 <h1>Liste des opérations</h1>
 
+<h3>Depenses: @Html.DisplayFor(model => model.TotalDepenses) €</h3> 
+<h3>Recettes: @Html.DisplayFor(model => model.TotalRecettes) €</h3> 
+
+<form asp-controller="Operation" asp-action="Index" method="get">
+    <p>
+        <label asp-for="IdCategorie" class="control-label">Categorie: </label>
+        <select asp-for="IdCategorie" asp-items="Model.Categories">
+            <option value="">All</option>
+        </select>
+        <div class="form-group">
+                <label asp-for="DateSelected" class="control-label">Date</label>
+                <input asp-for="DateSelected" class="form-control" />      
+                <span asp-validation-for="DateSelected" class="text-danger"></span>          
+            </div>
+        <input type="submit" value="Filtrer"/>
+    </p>
+</form>
+
 <table class="table">
     <thead>
         <tr>
@@ -15,16 +33,10 @@
                 @Html.DisplayNameFor(model => model.ListOperations.FirstOrDefault().Libelle)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ListOperations.FirstOrDefault().Reference)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.ListOperations.FirstOrDefault().Montant)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ListOperations.FirstOrDefault().Sens)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ListOperations.FirstOrDefault().Numcompte)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ListOperations.FirstOrDefault().IdCategorieNavigation.Libelle)
@@ -42,16 +54,10 @@
                 @Html.DisplayFor(modelItem => item.Libelle)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Reference)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Montant)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SensString)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Numcompte)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IdCategorieNavigation.Libelle)

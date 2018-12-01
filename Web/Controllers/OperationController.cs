@@ -1,10 +1,14 @@
 
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using SkalvaBank.Domain;
 using SkalvaBank.Services;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SkalvaBank.Web
@@ -22,11 +26,28 @@ namespace SkalvaBank.Web
         }
         
         [HttpGet]
-        public async Task<IActionResult> Index()
-        {            
-            var operationViewModel = new OperationViewModel();
-            operationViewModel.ListOperations = await _operationService.ListAllWithGraphAsync();
-            return View(operationViewModel);
+        public async Task<IActionResult> Index(int? idCategorie, DateTime? dateSelected)
+        {  
+            // Recuperation du filtre si celui a été activé
+            CookieFilterOperation cookie = new CookieFilterOperation().GetCookieFilterOperation(Request);
+            if(cookie != null && cookie.Activer)
+            {
+                idCategorie = cookie.IdCategorie;
+                dateSelected = cookie.DateSelected;
+            }
+            cookie = new CookieFilterOperation(idCategorie, dateSelected, false, Response);
+            
+            OperationViewModel operationVM = new OperationViewModel();            
+            operationVM.IdCategorie = idCategorie;    
+            operationVM.DateSelected = dateSelected;
+            var categories = _categorieService.ListAll().OrderBy(C => C.Libelle);
+
+            operationVM.ListOperations = await _operationService.ListFilterWithGraphAsync(idCategorie,dateSelected);
+            operationVM.TotalDepenses = _operationService.getTotalDepensesCourant(operationVM.ListOperations);
+            operationVM.TotalRecettes = _operationService.getTotalRecettesCourant(operationVM.ListOperations);
+            
+            operationVM.Categories = new SelectList(categories, "Id", "Libelle");             
+            return View(operationVM);
         }
 
         // GET: Operation/Details/5
@@ -43,6 +64,7 @@ namespace SkalvaBank.Web
             {
                 return NotFound();
             }
+            new CookieFilterOperation().ActiverCookieFilterOperation(Request, Response);
             return View(operation);
         }
 
@@ -61,6 +83,7 @@ namespace SkalvaBank.Web
             }
            // IEnumerable<Categorie> test = _categorieService.ListAll();
             ViewData["IdCategorie"] = new SelectList(_categorieService.ListAll(), "Id", "Libelle", operation.IdCategorie);
+            new CookieFilterOperation().ActiverCookieFilterOperation(Request, Response);
             return View(operation);
         }
 
@@ -96,6 +119,7 @@ namespace SkalvaBank.Web
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdCategorie"] = new SelectList(_categorieService.ListAll(), "Id", "Libelle", operation.IdCategorie);
+            new CookieFilterOperation().ActiverCookieFilterOperation(Request, Response);
             return View(operation);
         }
 

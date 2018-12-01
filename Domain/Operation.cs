@@ -6,7 +6,7 @@ namespace SkalvaBank.Domain
 {
     public partial class Operation : BaseEntity
     {
-        [Display(Name = "Date Operation")]
+        [Display(Name = "Date")]
         [DataType(DataType.Date)]
         public DateTime? Dateoperation { get; set; }
 

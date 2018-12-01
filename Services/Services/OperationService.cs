@@ -24,11 +24,32 @@ namespace SkalvaBank.Services
 
         public async Task<IReadOnlyList<Operation>> ListAllWithGraphAsync()
         {
-            BaseSpecification<Operation> spec = new BaseSpecification<Operation>(O => O.Dateoperation.Value.Month == 9);
+            BaseSpecification<Operation> spec = new BaseSpecification<Operation>();
             spec.AddInclude(o => o.IdCategorieNavigation);
             spec.ApplyOrderBy(O => O.Dateoperation);
-            spec.ApplyPaging(0,20);
             return await this.ListAsync(spec);            
+        }
+
+        public async Task<IReadOnlyList<Operation>> ListFilterWithGraphAsync(int? idCategorie,DateTime? dateoperation)
+        {
+            OperationFilter spec = new OperationFilter(idCategorie, dateoperation);
+            spec.AddInclude(o => o.IdCategorieNavigation);
+            spec.ApplyOrderBy(O => O.Dateoperation);
+            return await this.ListAsync(spec);            
+        }
+
+        public double? getTotalDepensesCourant(IEnumerable<Operation> listOperation)
+        {
+            return listOperation
+                        .Where(O => !O.Sens.Value && O.IdCategorieNavigation != null && !O.IdCategorieNavigation.HorsStats.Value && O.Numcompte == Constant.REF_COMPTE_COURANT)
+                        .Sum(O => O.Montant);
+        }
+
+        public double? getTotalRecettesCourant(IEnumerable<Operation> listOperation)
+        {
+            return listOperation
+                        .Where(O => O.Sens.Value && O.IdCategorieNavigation != null && !O.IdCategorieNavigation.HorsStats.Value && O.Numcompte == Constant.REF_COMPTE_COURANT)
+                        .Sum(O => O.Montant);
         }
     }
 }
