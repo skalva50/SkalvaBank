@@ -23,6 +23,12 @@ namespace SkalvaBank.Services
 
             return await _repositoryAsync.ListAsync(spec);            
         }
+        public async Task<Categorie> GetByIdWithGraphAsync(int id)
+        {
+            BaseSpecification<Categorie> spec = new BaseSpecification<Categorie>(O => O.Id == id);            
+            spec.AddInclude(o => o.IdTypecategorieNavigation);
+            return await _repositoryAsync.GetSingleBySpecAsync(spec);
+        }
     }
 
 

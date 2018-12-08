@@ -1,0 +1,13 @@
+Ajouter les fonctions de creation 
+- Categorie
+- Type Categorie
+
+Ajouter les CRUD de TYPE_CATEGORIE et ASS_LIB_CATEGORIE
+
+Ajouter la fonction de chargement des operations (Upload + parser)
+
+Ajouter l'ecran Stats avec les graphes
+
+[Option] Voir pour affectation categorie directement dans la liste
+
+Regler le probleme de validation des nombres à virgules.

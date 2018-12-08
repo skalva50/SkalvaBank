@@ -47,10 +47,11 @@ namespace SkalvaBank
             services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
 
             services.AddScoped<IOperationService, OperationService>();
-             services.AddScoped<ICategorieService, CategorieService>(); 
+            services.AddScoped<ICategorieService, CategorieService>(); 
+            services.AddScoped<ITypeCategorieService, TypeCategorieService>(); 
 
             services.AddDbContext<SkalvaBankContext>(options =>
-                  options.UseNpgsql("Host=192.168.1.11;Database=Banque99;Username=lecornu;Password=N2h*idEV3Aq0INXkxhl4"));
+                  options.UseNpgsql("Host=localhost;Database=SkalvaBank;Username=lecornu;Password=N2h*idEV3Aq0INXkxhl4"));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

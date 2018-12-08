@@ -17,6 +17,20 @@ namespace SkalvaBank.Domain
 
         [Display(Name = "Hors Statistiques")]        
         public bool? HorsStats { get; set; }
+        
+        public string HorsStatsString
+        {
+            get
+            {
+                if(HorsStats.HasValue && HorsStats.Value)
+                {
+                    return "Oui";
+                }else
+                {
+                    return "Non";
+                }
+            }
+        }
         public int? IdTypecategorie { get; set; }
 
         [Display(Name = "Type Catégorie")]

@@ -1,0 +1,36 @@
+@model SkalvaBank.Domain.Categorie
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Categorie</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Libelle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Libelle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HorsStats)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HorsStatsString)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdTypecategorieNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdTypecategorieNavigation.Libelle)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Modifier</a> |
+    <a asp-action="Index">Retour à la liste</a>
+</div>

@@ -3,27 +3,53 @@
     ViewData["Title"] = "Operation";
     @model OperationViewModel
 }
-<h1>Liste des opérations</h1>
-
-<h3>Depenses: @Html.DisplayFor(model => model.TotalDepenses) €</h3> 
-<h3>Recettes: @Html.DisplayFor(model => model.TotalRecettes) €</h3> 
-
-<form asp-controller="Operation" asp-action="Index" method="get">
-    <p>
-        <label asp-for="IdCategorie" class="control-label">Categorie: </label>
-        <select asp-for="IdCategorie" asp-items="Model.Categories">
-            <option value="">All</option>
-        </select>
-        <div class="form-group">
-                <label asp-for="DateSelected" class="control-label">Date</label>
-                <input asp-for="DateSelected" class="form-control" />      
-                <span asp-validation-for="DateSelected" class="text-danger"></span>          
+<div class="row">
+    <div class="col-lg-12">
+        <div class="page-header">
+            <h1 id="forms">Liste des opérations</h1>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">    
+        <h3>Depenses: @Html.DisplayFor(model => model.TotalDepenses) € </h3> 
+    </div>
+    <div class="col-lg-6">    
+        <h3>Recettes: @Html.DisplayFor(model => model.TotalRecettes) €</h3> 
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+    <div class="well bs-component">
+        <form class="form-horizontal">
+        <fieldset>
+            <legend>Filtre operations</legend>
+            <div class="form-group">
+                <label asp-for="IdCategorie" class="col-lg-2 control-label">Categorie: </label>
+                <div class="col-lg-10">
+                    <select asp-for="IdCategorie" asp-items="Model.Categories" class="form-control">
+                        <option value="">Toutes</option>
+                    </select>    
+                </div>
             </div>
-        <input type="submit" value="Filtrer"/>
-    </p>
-</form>
-
-<table class="table">
+            <div class="form-group">                
+                <label asp-for="DateSelected" class="col-lg-2 control-label">Date:</label>
+                <div class="col-lg-10">                    
+                    <input asp-for="DateSelected" class="form-control" />      
+                    <span asp-validation-for="DateSelected" class="text-danger"></span>   
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">                      
+                    <button type="submit" class="btn btn-primary">Filtrer</button>
+                </div>
+            </div>
+        </fieldset>
+        </form>
+    </div>
+    </div>
+</div>
+<table class="table table-striped table-hover">
     <thead>
         <tr>
             <th>
@@ -63,8 +89,8 @@
                 @Html.DisplayFor(modelItem => item.IdCategorieNavigation.Libelle)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Modifier</a>
+                <a asp-action="Details" asp-route-id="@item.Id">Détails</a>
             </td>
         </tr>
 }

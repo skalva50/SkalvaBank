@@ -55,7 +55,7 @@ namespace SkalvaBank.Services
         {
             return _repositoryAsync.GetByIdAsync(id);
         }
-
+        
         public T GetSingleBySpec(ISpecification<T> spec)
         {
             return _repository.GetSingleBySpec(spec);

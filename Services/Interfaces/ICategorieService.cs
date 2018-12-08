@@ -8,5 +8,6 @@ namespace SkalvaBank.Services
     public interface ICategorieService : IService<Categorie>
     {
         Task<IReadOnlyList<Categorie>> ListAllWithGraphAsync();
+        Task<Categorie> GetByIdWithGraphAsync(int id);
     }
 }
