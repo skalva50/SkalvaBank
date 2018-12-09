@@ -41,14 +41,14 @@ namespace SkalvaBank.Services
         public double? getTotalDepensesCourant(IEnumerable<Operation> listOperation)
         {
             return listOperation
-                        .Where(O => O.Sens.HasValue && !O.Sens.Value && O.IdCategorieNavigation != null && !O.IdCategorieNavigation.HorsStats.Value && O.Numcompte == Constant.REF_COMPTE_COURANT)
+                        .Where(O => O.Sens && O.IdCategorieNavigation != null && !O.IdCategorieNavigation.HorsStats && O.Numcompte == Constant.REF_COMPTE_COURANT)
                         .Sum(O => O.Montant);
         }
 
         public double? getTotalRecettesCourant(IEnumerable<Operation> listOperation)
         {
             return listOperation
-                        .Where(O => O.Sens.HasValue && O.Sens.Value && O.IdCategorieNavigation != null && !O.IdCategorieNavigation.HorsStats.Value && O.Numcompte == Constant.REF_COMPTE_COURANT)
+                        .Where(O => O.Sens && O.IdCategorieNavigation != null && !O.IdCategorieNavigation.HorsStats && O.Numcompte == Constant.REF_COMPTE_COURANT)
                         .Sum(O => O.Montant);
         }
     }

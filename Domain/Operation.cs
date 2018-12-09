@@ -20,14 +20,14 @@ namespace SkalvaBank.Domain
         [DataType(DataType.Currency)]
         public double? Montant { get; set; }
         
-        public bool? Sens { get; set; }
+        public bool Sens { get; set; }
 
         [Display(Name = "Sens")]
         public string SensString
         {
             get
             {
-                if(Sens.HasValue && Sens.Value)
+                if(Sens)
                 {
                     return "Recettes";
                 }else

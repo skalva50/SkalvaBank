@@ -16,13 +16,13 @@ namespace SkalvaBank.Domain
         public string Libelle { get; set; }
 
         [Display(Name = "Hors Statistiques")]        
-        public bool? HorsStats { get; set; }
+        public bool HorsStats { get; set; }
         
         public string HorsStatsString
         {
             get
             {
-                if(HorsStats.HasValue && HorsStats.Value)
+                if(HorsStats)
                 {
                     return "Oui";
                 }else

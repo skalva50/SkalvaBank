@@ -14,4 +14,6 @@ Ajouter l'ecran Stats avec les graphes
 
 [Option] Voir pour affectation categorie directement dans la liste des operations
 
-Regler le probleme de validation des nombres à virgules.
+[OK] Regler le probleme de validation des nombres à virgules.
+
+[OK] CheckBox HorsStats
