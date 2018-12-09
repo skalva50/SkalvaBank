@@ -1,6 +1,6 @@
 Ajouter les fonctions de creation 
-- Categorie
-- Type Categorie
+- [OK] Categorie
+- [OK] Type Categorie
 
 Ajouter les CRUD de TYPE_CATEGORIE et ASS_LIB_CATEGORIE
     - R Ok

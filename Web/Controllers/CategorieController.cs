@@ -94,5 +94,28 @@ namespace SkalvaBank.Web
             ViewData["IdTypecategorie"] = new SelectList(_typeCategorieService.ListAll(), "Id", "Libelle", categorie.IdTypecategorie);
             return View(categorie);
         }
+
+        // GET: Categorie/Create
+        public IActionResult Create()
+        {
+            ViewData["IdTypecategorie"] = new SelectList(_typeCategorieService.ListAll(), "Id", "Libelle");
+            return View();
+        }
+
+        // POST: Categorie/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,Libelle,HorsStats,IdTypecategorie")] Categorie categorie)
+        {
+            if (ModelState.IsValid)
+            {
+                await _categorieService.AddAsync(categorie);                
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["IdTypecategorie"] = new SelectList(_typeCategorieService.ListAll(), "Id", "Libelle", categorie.IdTypecategorie);
+            return View(categorie);
+        }
     }
 }
