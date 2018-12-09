@@ -117,5 +117,32 @@ namespace SkalvaBank.Web
             ViewData["IdTypecategorie"] = new SelectList(_typeCategorieService.ListAll(), "Id", "Libelle", categorie.IdTypecategorie);
             return View(categorie);
         }
+
+        // GET: Categorie/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var categorie = await _categorieService.GetByIdWithGraphAsync(id.Value);
+
+            if (categorie == null)
+            {
+                return NotFound();
+            }
+            return View(categorie);
+        }
+
+        // POST: Categorie/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var categorie = await _categorieService.GetByIdAsync(id);
+            await _categorieService.DeleteAsync(categorie);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

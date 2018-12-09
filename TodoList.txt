@@ -2,11 +2,18 @@ Ajouter les fonctions de creation
 - [OK] Categorie
 - [OK] Type Categorie
 
-Ajouter les CRUD de TYPE_CATEGORIE et ASS_LIB_CATEGORIE
-    - R Ok
+Categorie
+    - [OK] Delete
+TYPE_CATEGORIE
+    - Update
+    - Enlever lien detail
+ASS_LIB_CATEGORIE
+    - Create
+    - Update
+    - Details ?
+    - Delete
 
 Verifier la contrainte de clé étrangère sur la suppression
-
 
 Ajouter la fonction de chargement des operations (Upload + parser)
 

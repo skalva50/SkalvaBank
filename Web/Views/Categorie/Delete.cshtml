@@ -1,0 +1,41 @@
+@model SkalvaBank.Domain.Categorie
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="page-header">
+            <h1 id="forms">Supprimer catégories</h1>
+        </div>
+    </div>
+</div>
+<h3>Etes vous sûr de vouloir supprimer cette catégorie?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Libelle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Libelle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HorsStats)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HorsStats)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdTypecategorieNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdTypecategorieNavigation.Libelle)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Supprimer" class="btn btn-primary" />
+    </form>
+    <a asp-action="Index">Retour à la liste</a>
+</div>
