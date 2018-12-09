@@ -3,11 +3,15 @@ Ajouter les fonctions de creation
 - Type Categorie
 
 Ajouter les CRUD de TYPE_CATEGORIE et ASS_LIB_CATEGORIE
+    - R Ok
+
+Verifier la contrainte de clé étrangère sur la suppression
+
 
 Ajouter la fonction de chargement des operations (Upload + parser)
 
 Ajouter l'ecran Stats avec les graphes
 
-[Option] Voir pour affectation categorie directement dans la liste
+[Option] Voir pour affectation categorie directement dans la liste des operations
 
 Regler le probleme de validation des nombres à virgules.

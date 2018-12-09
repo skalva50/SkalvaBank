@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -49,6 +51,7 @@ namespace SkalvaBank
             services.AddScoped<IOperationService, OperationService>();
             services.AddScoped<ICategorieService, CategorieService>(); 
             services.AddScoped<ITypeCategorieService, TypeCategorieService>(); 
+             services.AddScoped<IAssLibCategorieService, AssLibCategorieService>(); 
 
             services.AddDbContext<SkalvaBankContext>(options =>
                   options.UseNpgsql("Host=localhost;Database=SkalvaBank;Username=lecornu;Password=N2h*idEV3Aq0INXkxhl4"));
@@ -59,6 +62,15 @@ namespace SkalvaBank
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            var defaultCulture = new CultureInfo("fr-FR");
+            var localizationOptions = new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(defaultCulture),
+                SupportedCultures = new List<CultureInfo> { defaultCulture },
+                SupportedUICultures = new List<CultureInfo> { defaultCulture }
+            };
+            app.UseRequestLocalization(localizationOptions);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

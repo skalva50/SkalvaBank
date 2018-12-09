@@ -1,0 +1,31 @@
+@model SkalvaBank.Domain.Typecategorie
+
+@{
+    ViewData["Title"] = "Suppression type catégorie";
+}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="page-header">
+            <h1 id="forms">Suppression type catégorie</h1>
+        </div>
+    </div>
+</div>
+
+<h3>Etes vous sûr de vouloir supprimer ce type de catégorie?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Libelle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Libelle)
+        </dd>
+    </dl>    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Supprimer" class="btn btn-primary" />
+    </form>
+    <div>
+        <a asp-action="Index">Retour à la liste</a>
+    </div>
+</div>

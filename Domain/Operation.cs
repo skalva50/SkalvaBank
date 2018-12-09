@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SkalvaBank.Domain
 {
@@ -15,6 +16,8 @@ namespace SkalvaBank.Domain
 
         [Display(Name = "Référence")]
         public string Reference { get; set; }
+        
+        [DataType(DataType.Currency)]
         public double? Montant { get; set; }
         
         public bool? Sens { get; set; }
