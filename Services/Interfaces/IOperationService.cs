@@ -13,6 +13,7 @@ namespace SkalvaBank.Services
         Task<Operation> GetByIdWithGraphAsync(int id);
         double? getTotalDepensesCourant(IEnumerable<Operation> listOperation);
         double? getTotalRecettesCourant(IEnumerable<Operation> listOperation);
+        void UploadOperation(List<string> listOperationString);
     }
 
 }

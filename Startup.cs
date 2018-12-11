@@ -51,7 +51,7 @@ namespace SkalvaBank
             services.AddScoped<IOperationService, OperationService>();
             services.AddScoped<ICategorieService, CategorieService>(); 
             services.AddScoped<ITypeCategorieService, TypeCategorieService>(); 
-             services.AddScoped<IAssLibCategorieService, AssLibCategorieService>(); 
+            services.AddScoped<IAssLibCategorieService, AssLibCategorieService>(); 
 
             services.AddDbContext<SkalvaBankContext>(options =>
                   options.UseNpgsql("Host=localhost;Database=SkalvaBank;Username=lecornu;Password=N2h*idEV3Aq0INXkxhl4"));

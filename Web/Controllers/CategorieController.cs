@@ -141,7 +141,14 @@ namespace SkalvaBank.Web
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var categorie = await _categorieService.GetByIdAsync(id);
-            await _categorieService.DeleteAsync(categorie);
+            try
+            {
+                await _categorieService.DeleteAsync(categorie);
+            }
+            catch (System.Exception ex)
+            {            
+                return new GestionError().DisplayError(ex.InnerException.Message);
+            }            
             return RedirectToAction(nameof(Index));
         }
     }

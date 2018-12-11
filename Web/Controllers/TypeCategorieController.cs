@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SkalvaBank.Domain;
 using SkalvaBank.Services;
 
@@ -26,6 +27,54 @@ namespace SkalvaBank.Web
         {
             return View();
         }
+
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var typeCategorie = await _typeCategorieService.GetByIdAsync(id.Value);
+            if (typeCategorie == null)
+            {
+                return NotFound();
+            }              
+            return View(typeCategorie);
+        }
+                        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Libelle")] Typecategorie typeCategorie)
+        {
+            if (id != typeCategorie.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _typeCategorieService.Update(typeCategorie);
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    // if (!OperationExists(operation.Id))
+                    // {
+                    //     return NotFound();
+                    // }
+                    // else
+                    // {
+                    //     throw;
+                    // }
+                }
+                return RedirectToAction(nameof(Index));
+            }           
+            return View(typeCategorie);
+        }
+
 
         // POST: Typecategorie/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -64,8 +113,15 @@ namespace SkalvaBank.Web
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var typecategorie = await _typeCategorieService.GetByIdAsync(id);
-            await _typeCategorieService.DeleteAsync(typecategorie);            
+            var typecategorie = await _typeCategorieService.GetByIdAsync(id);                
+            try
+            {
+                await _typeCategorieService.DeleteAsync(typecategorie);
+            }
+            catch (System.Exception ex)
+            {
+                return new GestionError().DisplayError(ex.InnerException.Message);                
+            }        
             return RedirectToAction(nameof(Index));
         }
     }

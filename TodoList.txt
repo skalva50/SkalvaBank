@@ -5,8 +5,8 @@ Ajouter les fonctions de creation
 Categorie
     - [OK] Delete
 TYPE_CATEGORIE
-    - Update
-    - Enlever lien detail
+    - [OK] Update
+    - [OK] Enlever lien detail
 ASS_LIB_CATEGORIE
     - Create
     - Update
@@ -14,13 +14,17 @@ ASS_LIB_CATEGORIE
     - Delete
 
 Verifier la contrainte de clé étrangère sur la suppression
+    - [OK] Ajout de la fonction d'affichage erreur
+    - [Option] test presence FK avant suppression avec message
 
-Ajouter la fonction de chargement des operations (Upload + parser)
+[OK] Ajouter la fonction de chargement des operations (Upload + parser)
 
 Ajouter l'ecran Stats avec les graphes
 
-[Option] Voir pour affectation categorie directement dans la liste des operations
+[Option] Voir pour affectation categorie directement dans la grille des operations
 
 [OK] Regler le probleme de validation des nombres à virgules.
 
 [OK] CheckBox HorsStats
+
+Ajout de log
